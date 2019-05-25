@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react'
 import { render } from '@vtex/test-tools/react'
-import ProductAvailability from '../ProductAvailability'
+import ProductAvailability from '../components/ProductAvailability'
 
 describe('Product Availability component', () => {
   it('should not render with availability 0 or null', () => {
@@ -12,6 +12,7 @@ describe('Product Availability component', () => {
     expect(queryByText('left!')).toBeNull()
     expect(queryByText('High stock')).toBeNull()
   })
+
   it('should not render with low stock message', () => {
     const { getByText, queryByText } = render(
       <ProductAvailability availableQuantity={10} lowStockMessage={'Only {quantity} left!'} highStockMessage={'High stock'} threshold={100} />
@@ -23,6 +24,7 @@ describe('Product Availability component', () => {
     // High stock message should not be visible
     expect(queryByText('High stock')).toBeNull()
   })
+
   it('should not render with high stock message', () => {
     const { getByText, queryByText } = render(
       <ProductAvailability availableQuantity={105} lowStockMessage={'Only {quantity} left!'} highStockMessage={'In stock!'} threshold={100} />
