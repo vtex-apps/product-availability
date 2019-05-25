@@ -1,0 +1,20 @@
+{
+  "vendor": "vtex",
+  "name": "product-availability",
+  "version": "0.0.1",
+  "title": "Product Availability",
+  "description": "Show different messages depending on your product available quantity",
+  "defaultLocale": "pt-BR",
+  "builders": {
+    "store": "0.x",
+    "react": "3.x"
+  },
+  "mustUpdateAt": "2019-04-02",
+  "scripts": {
+    "postreleasy": "vtex publish --verbose"
+  },
+  "dependencies": {
+    "vtex.product-context": "0.x"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}
