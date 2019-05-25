@@ -56,7 +56,9 @@ interface SelectedItem {
 
 const ProductAvailabilityWrapper: StorefrontFunctionComponent<Props> = ({ threshold, lowStockMessage, highStockMessage }) => {
   const valuesFromContext = useContext(ProductContext)
-  if (!valuesFromContext || isEmpty(valuesFromContext)) return null
+  if (!valuesFromContext || isEmpty(valuesFromContext)) {
+    return null
+  } 
   const { selectedItem }: { selectedItem: SelectedItem } = valuesFromContext
   const availableQuantity = path(['sellers', 0, 'commertialOffer', 'AvailableQuantity'], selectedItem) as number | undefined
   return <ProductAvailability { ...{ threshold, lowStockMessage, highStockMessage, availableQuantity }} />
