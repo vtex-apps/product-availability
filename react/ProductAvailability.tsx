@@ -1,2 +1,2 @@
-import ProductAvailability from './components/ProductAvailability'
-export default ProductAvailability
+import ProductAvailabilityWrapper from './components/ProductAvailabilityWrapper'
+export default ProductAvailabilityWrapper
