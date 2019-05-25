@@ -25,6 +25,7 @@ const ProductAvailability: FunctionComponent<Props> = ({ threshold, lowStockMess
   if (availableQuantity == null || availableQuantity < 1) {
     return null
   }
+
   const isLowStock = availableQuantity < threshold
   if (isLowStock && lowStockMessage) {
     return (
@@ -33,6 +34,7 @@ const ProductAvailability: FunctionComponent<Props> = ({ threshold, lowStockMess
       </Container>
     )
   }
+  
   if (highStockMessage) {
     return (
       <Container>
