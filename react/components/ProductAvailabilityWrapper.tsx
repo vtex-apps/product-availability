@@ -76,6 +76,7 @@ ProductAvailabilityWrapper.schema = {
       description: messages.thresholdDescription.id,
       type: 'number',
       default: 0,
+      isLayout: true,
     },
     lowStockMessage: {
       title: messages.lowStockMessageTitle.id,
