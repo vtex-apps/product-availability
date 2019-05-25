@@ -7,6 +7,6 @@ interface Props {
 }
 
 const HighStock: FunctionComponent<Props> = ({ text }) =>
-  <span className={classNames(styles.highStockText, 'c-muted-2 t-small')}>{text}</span>
+  <span className={classNames(styles.highStockText, 'c-muted-2 t-body')}>{text}</span>
 
 export default HighStock
