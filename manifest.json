@@ -1,7 +1,7 @@
 {
   "vendor": "vtex",
   "name": "product-availability",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "title": "Product Availability",
   "description": "Show different messages depending on your product available quantity",
   "defaultLocale": "pt-BR",
