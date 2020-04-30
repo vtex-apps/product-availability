@@ -1,4 +1,7 @@
 # Product Availability
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ## Description
 
@@ -113,3 +116,15 @@ To execute our tests go to `react/` folder and run `yarn test`
 
 [![Build Status](https://travis-ci.org/vtex-apps/product-availability.svg?branch=master)](https://travis-ci.org/vtex-apps/product-availability)
 [![Coverage Status](https://coveralls.io/repos/github/vtex-apps/product-availability/badge.svg?branch=master)](https://coveralls.io/github/vtex-apps/product-availability?branch=master)
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
