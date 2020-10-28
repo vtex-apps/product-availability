@@ -25,7 +25,6 @@ const LowStock: FunctionComponent<Props> = ({ text, availableQuantity }) => {
       </Fragment>
     )
   }
-  
 }
 
 export default LowStock
