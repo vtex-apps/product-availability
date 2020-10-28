@@ -8,7 +8,6 @@ interface Props {
 }
 
 const LowStock: FunctionComponent<Props> = ({ text, availableQuantity }) => {
-  console.log(text);
   if(text.includes('{quantity}')) {
     const [before, after] = text.split('{quantity}');
     return (
