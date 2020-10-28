@@ -10,6 +10,7 @@ interface Props {
   threshold: number
   lowStockMessage: string
   highStockMessage: string
+  lastLeftMessage: string
   availableQuantity: number | null | undefined
 }
 
@@ -21,16 +22,18 @@ const Container: FunctionComponent = ({ children }) => {
   )
 }
 
-const ProductAvailability: FunctionComponent<Props> = ({ threshold, lowStockMessage, highStockMessage, availableQuantity }) => {
+const ProductAvailability: FunctionComponent<Props> = ({ threshold, lowStockMessage, highStockMessage, lastLeftMessage, availableQuantity }) => {
   if (availableQuantity == null || availableQuantity < 1) {
     return null
   }
 
   const isLowStock = availableQuantity < threshold
+  
   if (isLowStock && lowStockMessage) {
+    const messageLastLeft = (typeof lastLeftMessage !== 'undefined') ? lastLeftMessage : lowStockMessage;
     return (
       <Container>
-        <LowStock text={lowStockMessage} availableQuantity={availableQuantity} />
+        <LowStock text={(availableQuantity === 1) ? messageLastLeft : lowStockMessage} availableQuantity={availableQuantity} />
       </Container>
     )
   }

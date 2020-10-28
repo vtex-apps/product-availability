@@ -38,12 +38,22 @@ const messages = defineMessages({
     defaultMessage: 'String to be shown when stock is higher or equal than threshold. If left empty, won\'t show',
     id: 'admin/editor.product-availability.highStockMessage.description',
   },
+  lastLeftMessageTitle: {
+    defaultMessage: 'Last left message',
+    id: 'admin/editor.product-availability.lastLeftMessage.title',
+  },
+  lastLeftMessageDescription: {
+    defaultMessage: 'String to be shown when stock is equal with one. If left empty, won\'t show',
+    id: 'admin/editor.product-availability.lastLeftMessage.description',
+  },
+  
 })
 
 interface Props {
   threshold: number
   lowStockMessage: string
   highStockMessage: string
+  lastLeftMessage: string
 }
 
 interface SelectedItem {
@@ -54,14 +64,14 @@ interface SelectedItem {
   }>
 }
 
-const ProductAvailabilityWrapper: StorefrontFunctionComponent<Props> = ({ threshold, lowStockMessage, highStockMessage }) => {
+const ProductAvailabilityWrapper: StorefrontFunctionComponent<Props> = ({ threshold, lowStockMessage, highStockMessage, lastLeftMessage }) => {
   const valuesFromContext = useContext(ProductContext)
   if (!valuesFromContext || isEmpty(valuesFromContext)) {
     return null
   } 
   const { selectedItem }: { selectedItem: SelectedItem } = valuesFromContext
   const availableQuantity = path(['sellers', 0, 'commertialOffer', 'AvailableQuantity'], selectedItem) as number | undefined
-  return <ProductAvailability { ...{ threshold, lowStockMessage, highStockMessage, availableQuantity }} />
+  return <ProductAvailability { ...{ threshold, lowStockMessage, highStockMessage, lastLeftMessage, availableQuantity }} />
 }
 
 ProductAvailabilityWrapper.defaultProps = {
@@ -88,6 +98,11 @@ ProductAvailabilityWrapper.schema = {
     highStockMessage: {
       title: messages.highStockMessageTitle.id,
       description: messages.highStockMessageDescription.id,
+      type: 'string',
+    },
+    lastLeftMessage: {
+      title: messages.lastLeftMessageTitle.id,
+      description: messages.lastLeftMessageDescription.id,
       type: 'string',
     }
   },

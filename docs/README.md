@@ -39,7 +39,8 @@ Now, you can change the behavior of the `product-availability` block that is in 
   "props": {
     "threshold": "10",
     "lowStockMessage": "Only {quantity} left!",
-    "highStockMessage": "Item in stock!"
+    "highStockMessage": "Item in stock!",
+    "lastLeftMessage": "Last item"
   }
 }
 ```
@@ -67,6 +68,7 @@ Through the Storefront, you can change the product-availability's behavior and i
 | `threshold`     | `Number` | DefineMinimum quantity that makes low stock message appear (if message is set). Default: 0    |
 | `lowStockMessage`        | `String` | String to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: \"Only {quantity} left!\". Leave empty to not show. Default: ""              |
 | `highStockMessage`  | `String` | String to be shown when stock is higher or equal than threshold. If left empty, won\'t show. Default: ""                                                              |
+| `lastLeftMessage`  | `String` | String to be shown when stock is equal with one. If left empty, the `lowStockMessage` prop will be displayed. Default: ""  |
 
 ### Styles API
 
@@ -99,7 +101,9 @@ Below, we describe the namespaces that are defined in the product-availability.
 | `container`                | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/ProductAvailability.tsx) | The main container of `ProductAvailability`                      |
 | `lowStockText`          | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)    |  Normal text for the low stock message.                                        
 | `lowStockHighlight`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)   |  Number of the low stock message that is supposed to be highlighted.  |
+| `lastLeftText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)   | Text for last item left.    |
 | `highStockText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/HighStock.tsx)   | Text of the hight stock message.    |
+
 
 ## Troubleshooting
 
