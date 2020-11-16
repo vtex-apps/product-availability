@@ -8,7 +8,9 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- DOCS-IGNORE:end -->
 
-The Product Availability app displays text messages regarding the in-stock quantity for a given product. 
+The Product Availability app displays text messages regarding the in-stock quantity for products. 
+
+![product-availability](https://user-images.githubusercontent.com/52087100/99307082-c8f76900-2834-11eb-96f2-df5e9d2bc49a.png)
 
 ## Configuration
 
