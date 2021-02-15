@@ -1,31 +1,28 @@
 import React, { memo } from 'react'
-import type { FunctionComponent } from 'react'
-import classNames from 'classnames'
+import type { ProductTypes } from 'vtex.product-context'
 
-import styles from '../styles.css'
 import LowStock from './LowStock'
 import HighStock from './HighStock'
+import Container from './Container'
 
 interface Props {
   threshold: number
-  lowStockMessage: string
-  highStockMessage: string
-  availableQuantity: number | null | undefined
+  lowStockMessage?: string
+  highStockMessage?: string
+  availableQuantity?: ProductTypes.CommercialOffer['AvailableQuantity']
 }
 
-const Container: FunctionComponent = ({ children }) => {
-  return (
-    <div className={classNames(styles.container, 'flex pv2')}>{children}</div>
-  )
-}
-
-const ProductAvailability: FunctionComponent<Props> = ({
+function ProductAvailability({
   threshold,
   lowStockMessage,
   highStockMessage,
   availableQuantity,
-}) => {
-  if (availableQuantity == null || availableQuantity < 1) {
+}: Props) {
+  if (
+    availableQuantity == null ||
+    availableQuantity === undefined ||
+    availableQuantity < 1
+  ) {
     return null
   }
 
@@ -42,15 +39,15 @@ const ProductAvailability: FunctionComponent<Props> = ({
     )
   }
 
-  if (highStockMessage) {
-    return (
-      <Container>
-        <HighStock text={highStockMessage} />
-      </Container>
-    )
+  if (!highStockMessage) {
+    return null
   }
 
-  return null
+  return (
+    <Container>
+      <HighStock text={highStockMessage} />
+    </Container>
+  )
 }
 
 export default memo(ProductAvailability)

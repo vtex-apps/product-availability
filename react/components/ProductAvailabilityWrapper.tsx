@@ -1,9 +1,12 @@
-import React, { useContext } from 'react'
-import { isEmpty, path } from 'ramda'
-import { ProductContext } from 'vtex.product-context'
+import React from 'react'
+import { useProduct } from 'vtex.product-context'
+import type { ProductTypes } from 'vtex.product-context'
+import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
 import { defineMessages } from 'react-intl'
 
 import ProductAvailability from './ProductAvailability'
+import { CssHandlesProvider } from './CssHandlesContext'
 
 const messages = defineMessages({
   title: {
@@ -43,38 +46,67 @@ const messages = defineMessages({
   },
 })
 
-interface Props {
-  threshold: number
-  lowStockMessage: string
-  highStockMessage: string
+const CONTAINER_CSS_HANDLES = ['container'] as const
+const LOW_STOCK_CSS_HANDLES = ['lowStockText', 'lowStockHighlight'] as const
+const HIGH_STOCK_CSS_HANDLES = ['highStockText'] as const
+
+export const CSS_HANDLES = [
+  ...CONTAINER_CSS_HANDLES,
+  ...HIGH_STOCK_CSS_HANDLES,
+  ...LOW_STOCK_CSS_HANDLES,
+] as const
+
+export function getFirstAvailableSeller(sellers?: ProductTypes.Seller[]) {
+  if (!sellers || sellers.length === 0) {
+    return
+  }
+
+  const availableSeller = sellers.find(
+    seller => seller.commertialOffer.AvailableQuantity !== 0
+  )
+
+  return availableSeller
 }
 
-const ProductAvailabilityWrapper: StorefrontFunctionComponent<Props> = ({
-  threshold,
+interface Props {
+  threshold: number
+  lowStockMessage?: string
+  highStockMessage?: string
+  classes?: CssHandlesTypes.CustomClasses<
+    typeof CONTAINER_CSS_HANDLES &
+      (typeof LOW_STOCK_CSS_HANDLES | typeof HIGH_STOCK_CSS_HANDLES)
+  >
+}
+
+function ProductAvailabilityWrapper({
+  threshold = 0,
   lowStockMessage,
   highStockMessage,
-}) => {
-  const valuesFromContext = useContext(ProductContext)
+  classes,
+}: Props) {
+  const { handles, withModifiers } = useCssHandles(CSS_HANDLES, { classes })
+  const productContextValue = useProduct()
 
-  if (!valuesFromContext || isEmpty(valuesFromContext)) {
+  if (!productContextValue) {
     return null
   }
 
-  const { selectedItem } = valuesFromContext
-  const availableQuantity = path(
-    ['sellers', 0, 'commertialOffer', 'AvailableQuantity'],
-    selectedItem
-  ) as number | undefined
+  const seller = getFirstAvailableSeller(
+    productContextValue.selectedItem?.sellers
+  )
+
+  const availableQuantity = seller?.commertialOffer.AvailableQuantity
 
   return (
-    <ProductAvailability
-      {...{ threshold, lowStockMessage, highStockMessage, availableQuantity }}
-    />
+    <CssHandlesProvider handles={handles} withModifiers={withModifiers}>
+      <ProductAvailability
+        threshold={threshold}
+        lowStockMessage={lowStockMessage}
+        highStockMessage={highStockMessage}
+        availableQuantity={availableQuantity}
+      />
+    </CssHandlesProvider>
   )
-}
-
-ProductAvailabilityWrapper.defaultProps = {
-  threshold: 0,
 }
 
 ProductAvailabilityWrapper.schema = {

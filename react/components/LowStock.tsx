@@ -1,36 +1,30 @@
 import React, { Fragment } from 'react'
-import type { FunctionComponent } from 'react'
-import classNames from 'classnames'
 
-import styles from '../styles.css'
+import { useContextCssHandles } from './CssHandlesContext'
 
 interface Props {
   text: string
   availableQuantity: number
 }
 
-const LowStock: FunctionComponent<Props> = ({ text, availableQuantity }) => {
+function LowStock({ text, availableQuantity }: Props) {
+  const { handles } = useContextCssHandles()
   const [before, after] = text.split('{quantity}')
 
   return (
     <Fragment>
       {before && (
-        <span className={classNames(styles.lowStockText, 'c-muted-2 t-body')}>
+        <span className={`${handles.lowStockText} c-muted-2 t-body`}>
           {before}
         </span>
       )}
       {availableQuantity && (
-        <span
-          className={classNames(
-            styles.lowStockHighlight,
-            'c-muted-2 t-body b mh1'
-          )}
-        >
+        <span className={`${handles.lowStockHighlight} c-muted-2 t-body b mh1`}>
           {availableQuantity}
         </span>
       )}
       {after && (
-        <span className={classNames(styles.lowStockText, 'c-muted-2 t-body')}>
+        <span className={`${handles.lowStockText} c-muted-2 t-body`}>
           {after}
         </span>
       )}
