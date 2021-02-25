@@ -18,11 +18,7 @@ function ProductAvailability({
   highStockMessage,
   availableQuantity,
 }: Props) {
-  if (
-    availableQuantity == null ||
-    availableQuantity === undefined ||
-    availableQuantity < 1
-  ) {
+  if (!availableQuantity || availableQuantity < 1) {
     return null
   }
 
