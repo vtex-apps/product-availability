@@ -44,13 +44,12 @@ const messages = defineMessages({
       "String to be shown when stock is higher or equal than threshold. If left empty, won't show",
     id: 'admin/editor.product-availability.highStockMessage.description',
   },
-    showAvailabilityMessageTitle: {
+  showAvailabilityMessageTitle: {
     defaultMessage: 'Show available Message',
     id: 'admin/editor.product-availability.showAvailabilityMessage.title',
   },
-    showAvailabilityMessageDescription: {
-    defaultMessage:
-      "String to be shown when show available option is true",
+  showAvailabilityMessageDescription: {
+    defaultMessage: 'String to be shown when show available option is true',
     id: 'admin/editor.product-availability.showAvailabilityMessage.description',
   },
 })
@@ -64,7 +63,7 @@ export const CSS_HANDLES = [
   ...CONTAINER_CSS_HANDLES,
   ...LOW_STOCK_CSS_HANDLES,
   ...HIGH_STOCK_CSS_HANDLES,
-  ...SHOW_AVAILABLE_CSS_HANDLES
+  ...SHOW_AVAILABLE_CSS_HANDLES,
 ] as const
 
 export function getFirstAvailableSeller(sellers?: ProductTypes.Seller[]) {
@@ -87,7 +86,11 @@ interface Props {
   showAvailabilityMessage?: string
   classes?: CssHandlesTypes.CustomClasses<
     typeof CONTAINER_CSS_HANDLES &
-      (typeof LOW_STOCK_CSS_HANDLES | typeof HIGH_STOCK_CSS_HANDLES | typeof SHOW_AVAILABLE_CSS_HANDLES)
+      (
+        | typeof LOW_STOCK_CSS_HANDLES
+        | typeof HIGH_STOCK_CSS_HANDLES
+        | typeof SHOW_AVAILABLE_CSS_HANDLES
+      )
   >
 }
 

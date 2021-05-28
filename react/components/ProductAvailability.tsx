@@ -29,32 +29,30 @@ function ProductAvailability({
 
   const isLowStock = availableQuantity < threshold
 
-  if(!showAvailability) {
+  if (!showAvailability) {
     if (isLowStock && lowStockMessage) {
       return (
-          <Container>
-            <LowStock
-                text={lowStockMessage}
-                availableQuantity={availableQuantity}
-            />
-          </Container>
-      )
-    }
-    if (!isLowStock && highStockMessage) {
-      return (
-          <HighStock
-              text={highStockMessage}
+        <Container>
+          <LowStock
+            text={lowStockMessage}
+            availableQuantity={availableQuantity}
           />
+        </Container>
       )
     }
+
+    if (!isLowStock && highStockMessage) {
+      return <HighStock text={highStockMessage} />
+    }
+
     return null
   }
 
   return (
     <Container>
       <ShowAvailable
-          showAvailabilityMessage={showAvailabilityMessage}
-          availableQuantity={availableQuantity}
+        showAvailabilityMessage={showAvailabilityMessage}
+        availableQuantity={availableQuantity}
       />
     </Container>
   )
