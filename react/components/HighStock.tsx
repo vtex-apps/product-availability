@@ -1,17 +1,17 @@
 import React from 'react'
 
-import { useContextCssHandles } from './CssHandlesContext'
+import {useContextCssHandles} from './CssHandlesContext'
 
 interface Props {
-  text: string
+    text: string,
 }
 
-function HighStock({ text }: Props) {
-  const { handles } = useContextCssHandles()
+function HighStock({text}: Props) {
+    const {handles} = useContextCssHandles()
 
-  return (
-    <span className={`${handles.highStockText} c-muted-2 t-body`}>{text}</span>
-  )
+    return (
+        <span className={`${handles.highStockText} c-muted-2 t-body`}>{text}</span>
+    )
 }
 
 export default HighStock

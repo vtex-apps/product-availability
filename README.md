@@ -32,14 +32,25 @@ To use this app or override the default CSS you need import it in your dependenc
 
 Then, add `product-availability` block to your `blocks.json`
 
-Now, you can change the behavior of the `product-availability` block that is in the minicart. See an example of how to configure:
+Now, you can change the behavior of the `product-availability` block that is in the minicart. See an example of how to configure **without** showing availability:
 
 ```json
 "product-availability": {
   "props": {
     "threshold": "10",
     "lowStockMessage": "Only {quantity} left!",
-    "highStockMessage": "Item in stock!"
+    "highStockMessage": "Item in stock!",
+  }
+}
+```
+
+See an example of how to configure **showing availability**:
+
+```json
+"product-availability": {
+  "props": {
+    "showAvailability": true,
+    "showAvailabilityMessage": "Available items:"
   }
 }
 ```
@@ -67,6 +78,8 @@ Through the Storefront, you can change the product-availability's behavior and i
 | `threshold`     | `Number` | DefineMinimum quantity that makes low stock message appear (if message is set). Default: 0    |
 | `lowStockMessage`        | `String` | String to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: \"Only {quantity} left!\". Leave empty to not show. Default: ""              |
 | `highStockMessage`  | `String` | String to be shown when stock is higher or equal than threshold. If left empty, won\'t show. Default: ""                                                              |
+| `showAvailability`  | `Boolean` | Enables the possibility to show the available items instead of lowStockMessage or highStockMessage. Default: false                                                              |
+| `showAvailabilityMessage`  | `String` | String to be shown when show available option is true. If left empty, won\'t show. Default: ""                                                              |
 
 ### Styles API
 
@@ -100,6 +113,7 @@ Below, we describe the namespaces that are defined in the product-availability.
 | `lowStockText`          | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)    |  Normal text for the low stock message.                                        
 | `lowStockHighlight`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)   |  Number of the low stock message that is supposed to be highlighted.  |
 | `highStockText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/HighStock.tsx)   | Text of the hight stock message.    |
+| `showAvailableText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/ShowAvailable.tsx)   | Text of the show available message.    |
 
 ## Troubleshooting
 

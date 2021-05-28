@@ -53,4 +53,31 @@ describe('Product Availability component', () => {
     // low stock message should not be visible
     expect(queryByText('Only')).toBeNull()
   })
+
+  it('should render available quantity without a message', () => {
+    const { getByText } = render(
+        <ProductAvailability
+            threshold={0}
+            availableQuantity={10}
+            showAvailability
+        />
+    )
+
+    expect(getByText('10')).toBeDefined()
+  })
+
+  it('should render available quantity with a message', () => {
+    const { getByText } = render(
+        <ProductAvailability
+            threshold={0}
+            availableQuantity={50}
+            showAvailability
+            showAvailabilityMessage={'Items in stock: '}
+        />
+    )
+
+    expect(getByText('Items in stock: 50')).toBeDefined()
+  })
+
+
 })
