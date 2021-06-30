@@ -7,7 +7,7 @@ interface Props {
   availableQuantity: number
 }
 
-function HighStock({ showAvailabilityMessage, availableQuantity }: Props) {
+function ShowAvailable({ showAvailabilityMessage, availableQuantity }: Props) {
   const { handles } = useContextCssHandles()
 
   return (
@@ -17,4 +17,4 @@ function HighStock({ showAvailabilityMessage, availableQuantity }: Props) {
   )
 }
 
-export default HighStock
+export default ShowAvailable
