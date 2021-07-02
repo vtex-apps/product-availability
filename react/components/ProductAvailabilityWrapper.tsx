@@ -57,7 +57,10 @@ const messages = defineMessages({
 const CONTAINER_CSS_HANDLES = ['container'] as const
 const LOW_STOCK_CSS_HANDLES = ['lowStockText', 'lowStockHighlight'] as const
 const HIGH_STOCK_CSS_HANDLES = ['highStockText'] as const
-const SHOW_AVAILABLE_CSS_HANDLES = ['showAvailableText'] as const
+const SHOW_AVAILABLE_CSS_HANDLES = [
+  'showAvailableText',
+  'showAvailableTextHighlight',
+] as const
 
 export const CSS_HANDLES = [
   ...CONTAINER_CSS_HANDLES,
@@ -82,7 +85,7 @@ interface Props {
   threshold: number
   lowStockMessage?: string
   highStockMessage?: string
-  showAvailability?: boolean
+  showAvailability?: 'stock'
   showAvailabilityMessage?: string
   classes?: CssHandlesTypes.CustomClasses<
     typeof CONTAINER_CSS_HANDLES &

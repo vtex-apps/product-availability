@@ -10,7 +10,7 @@ interface Props {
   threshold: number
   lowStockMessage?: string
   highStockMessage?: string
-  showAvailability?: boolean
+  showAvailability?: 'stock'
   showAvailabilityMessage?: string
   availableQuantity?: ProductTypes.CommercialOffer['AvailableQuantity']
 }
@@ -29,11 +29,11 @@ function ProductAvailability({
 
   const isLowStock = availableQuantity < threshold
 
-  if (showAvailability) {
+  if (showAvailability === 'stock' && showAvailabilityMessage) {
     return (
       <Container>
         <ShowAvailable
-          showAvailabilityMessage={showAvailabilityMessage}
+          text={showAvailabilityMessage}
           availableQuantity={availableQuantity}
         />
       </Container>
