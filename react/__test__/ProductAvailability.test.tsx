@@ -59,7 +59,8 @@ describe('Product Availability component', () => {
       <ProductAvailability
         threshold={0}
         availableQuantity={10}
-        showAvailability
+        showAvailability="stock"
+        showAvailabilityMessage="{quantity}"
       />
     )
 
@@ -71,11 +72,12 @@ describe('Product Availability component', () => {
       <ProductAvailability
         threshold={0}
         availableQuantity={50}
-        showAvailability
-        showAvailabilityMessage="Items in stock: "
+        showAvailability="stock"
+        showAvailabilityMessage="Items in stock:{quantity}"
       />
     )
 
-    expect(getByText('Items in stock: 50')).toBeDefined()
+    expect(getByText('Items in stock:')).toBeDefined()
+    expect(getByText('50')).toBeDefined()
   })
 })
