@@ -10,7 +10,7 @@ interface Props {
   threshold: number
   lowStockMessage?: string
   highStockMessage?: string
-  showAvailability?: 'stock'
+  showAvailability?: 'disabled' | 'stock'
   showAvailabilityMessage?: string
   availableQuantity?: ProductTypes.CommercialOffer['AvailableQuantity']
 }
@@ -19,7 +19,7 @@ function ProductAvailability({
   threshold,
   lowStockMessage,
   highStockMessage,
-  showAvailability,
+  showAvailability = 'disabled',
   showAvailabilityMessage,
   availableQuantity,
 }: Props) {
@@ -51,11 +51,15 @@ function ProductAvailability({
     )
   }
 
-  if (!isLowStock && highStockMessage) {
-    return <HighStock text={highStockMessage} />
+  if (!highStockMessage) {
+    return null
   }
 
-  return null
+  return (
+    <Container>
+      <HighStock text={highStockMessage} />
+    </Container>
+  )
 }
 
 export default memo(ProductAvailability)

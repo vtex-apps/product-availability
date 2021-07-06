@@ -44,12 +44,21 @@ const messages = defineMessages({
       "String to be shown when stock is higher or equal than threshold. If left empty, won't show",
     id: 'admin/editor.product-availability.highStockMessage.description',
   },
+  showAvailabilityTitle: {
+    defaultMessage: 'Enable availability message',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.title',
+  },
+  showAvailabilityDescription: {
+    defaultMessage: 'Option to show availability',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.description',
+  },
   showAvailabilityMessageTitle: {
-    defaultMessage: 'Show available Message',
+    defaultMessage: 'Availability Message',
     id: 'admin/editor.product-availability.showAvailabilityMessage.title',
   },
   showAvailabilityMessageDescription: {
-    defaultMessage: 'String to be shown when show available option is true',
+    defaultMessage:
+      'String to be shown when "Show availability message" option is set to "stock"',
     id: 'admin/editor.product-availability.showAvailabilityMessage.description',
   },
 })
@@ -152,6 +161,11 @@ ProductAvailabilityWrapper.schema = {
     highStockMessage: {
       title: messages.highStockMessageTitle.id,
       description: messages.highStockMessageDescription.id,
+      type: 'string',
+    },
+    showAvailability: {
+      title: messages.showAvailabilityTitle.id,
+      description: messages.showAvailabilityDescription.id,
       type: 'string',
     },
     showAvailabilityMessage: {
