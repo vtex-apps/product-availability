@@ -53,12 +53,12 @@ const messages = defineMessages({
     id: 'admin/editor.product-availability.showAvailabilityMessage.description',
   },
   showAvailabilityMessageTitle: {
-    defaultMessage: 'Availability Message',
+    defaultMessage: 'Availability message',
     id: 'admin/editor.product-availability.showAvailabilityMessage.title',
   },
   showAvailabilityMessageDescription: {
     defaultMessage:
-      'String to be shown when "Show availability message" option is set to "stock"',
+      'String to be shown when "Enable availability message" option is set to "stock"',
     id: 'admin/editor.product-availability.showAvailabilityMessage.description',
   },
 })
@@ -166,7 +166,8 @@ ProductAvailabilityWrapper.schema = {
     showAvailability: {
       title: messages.showAvailabilityTitle.id,
       description: messages.showAvailabilityDescription.id,
-      type: 'string',
+      type: 'enum',
+      enum: ['disabled', 'stock'],
     },
     showAvailabilityMessage: {
       title: messages.showAvailabilityMessageTitle.id,

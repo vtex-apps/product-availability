@@ -26,8 +26,8 @@ To use this app or override the default CSS you need import it in your dependenc
 
 ```json
   "dependencies": {
-    "vtex.product-availability": "0.x"
-  }
+"vtex.product-availability": "0.x"
+}
 ```
 
 Then, add `product-availability` block to your `blocks.json`
@@ -78,7 +78,7 @@ Through the Storefront, you can change the product-availability's behavior and i
 | `threshold`     | `Number` | DefineMinimum quantity that makes low stock message appear (if message is set). Default: 0    |
 | `lowStockMessage`        | `String` | String to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: \"Only {quantity} left!\". Leave empty to not show. Default: ""              |
 | `highStockMessage`  | `String` | String to be shown when stock is higher or equal than threshold. If left empty, won\'t show. Default: ""                                                              |
-| `showAvailability`  | `String` | Enables the possibility to show the available items instead of lowStockMessage or highStockMessage. Default `'disabled'`. To enable it, string should be `'stock'`                                                     |
+| `showAvailability`  | `'disabled' \ 'stock'` | Enables the possibility to show the available items instead of lowStockMessage or highStockMessage. Default `'disabled'`. To enable it, string should be `'stock'`                                                     |
 | `showAvailabilityMessage`  | `String` | String to be shown when show available option is true. Should have {quantity} inside the given string, to be replaced for the available property. Example: \"There are {quantity} available!\". Leave empty to not show. Default: ""                                                              |
 
 ### Styles API
@@ -110,7 +110,7 @@ Below, we describe the namespaces that are defined in the product-availability.
 | Token name                 | Component                                                                                                                                                                                                                                                                                                                                                                     | Description                                                   |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | `container`                | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/ProductAvailability.tsx) | The main container of `ProductAvailability`                      |
-| `lowStockText`          | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)    |  Normal text for the low stock message.                                        
+| `lowStockText`          | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)    |  Normal text for the low stock message.
 | `lowStockHighlight`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)   |  Number of the low stock message that is supposed to be highlighted.  |
 | `highStockText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/HighStock.tsx)   | Text of the hight stock message.    |
 | `showAvailableText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/ShowAvailable.tsx)   | Text of the show available message.    |
