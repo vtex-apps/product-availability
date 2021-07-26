@@ -26,8 +26,8 @@ To use this app or override the default CSS you need import it in your dependenc
 
 ```json
   "dependencies": {
-"vtex.product-availability": "0.x"
-}
+    "vtex.product-availability": "0.x"
+  }
 ```
 
 Then, add `product-availability` block to your `blocks.json`
