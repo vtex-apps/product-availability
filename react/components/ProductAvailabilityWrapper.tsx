@@ -44,16 +44,38 @@ const messages = defineMessages({
       "String to be shown when stock is higher or equal than threshold. If left empty, won't show",
     id: 'admin/editor.product-availability.highStockMessage.description',
   },
+  showAvailabilityTitle: {
+    defaultMessage: 'Enable availability message',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.title',
+  },
+  showAvailabilityDescription: {
+    defaultMessage: 'Option to show availability',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.description',
+  },
+  showAvailabilityMessageTitle: {
+    defaultMessage: 'Availability message',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.title',
+  },
+  showAvailabilityMessageDescription: {
+    defaultMessage:
+      'String to be shown when "Enable availability message" option is set to "stock"',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.description',
+  },
 })
 
 const CONTAINER_CSS_HANDLES = ['container'] as const
 const LOW_STOCK_CSS_HANDLES = ['lowStockText', 'lowStockHighlight'] as const
 const HIGH_STOCK_CSS_HANDLES = ['highStockText'] as const
+const SHOW_AVAILABLE_CSS_HANDLES = [
+  'showAvailableText',
+  'showAvailableTextHighlight',
+] as const
 
 export const CSS_HANDLES = [
   ...CONTAINER_CSS_HANDLES,
-  ...HIGH_STOCK_CSS_HANDLES,
   ...LOW_STOCK_CSS_HANDLES,
+  ...HIGH_STOCK_CSS_HANDLES,
+  ...SHOW_AVAILABLE_CSS_HANDLES,
 ] as const
 
 export function getFirstAvailableSeller(sellers?: ProductTypes.Seller[]) {
@@ -72,9 +94,15 @@ interface Props {
   threshold: number
   lowStockMessage?: string
   highStockMessage?: string
+  showAvailability?: 'stock'
+  showAvailabilityMessage?: string
   classes?: CssHandlesTypes.CustomClasses<
     typeof CONTAINER_CSS_HANDLES &
-      (typeof LOW_STOCK_CSS_HANDLES | typeof HIGH_STOCK_CSS_HANDLES)
+      (
+        | typeof LOW_STOCK_CSS_HANDLES
+        | typeof HIGH_STOCK_CSS_HANDLES
+        | typeof SHOW_AVAILABLE_CSS_HANDLES
+      )
   >
 }
 
@@ -82,6 +110,8 @@ function ProductAvailabilityWrapper({
   threshold = 0,
   lowStockMessage,
   highStockMessage,
+  showAvailability,
+  showAvailabilityMessage,
   classes,
 }: Props) {
   const { handles, withModifiers } = useCssHandles(CSS_HANDLES, { classes })
@@ -103,6 +133,8 @@ function ProductAvailabilityWrapper({
         threshold={threshold}
         lowStockMessage={lowStockMessage}
         highStockMessage={highStockMessage}
+        showAvailability={showAvailability}
+        showAvailabilityMessage={showAvailabilityMessage}
         availableQuantity={availableQuantity}
       />
     </CssHandlesProvider>
@@ -129,6 +161,17 @@ ProductAvailabilityWrapper.schema = {
     highStockMessage: {
       title: messages.highStockMessageTitle.id,
       description: messages.highStockMessageDescription.id,
+      type: 'string',
+    },
+    showAvailability: {
+      title: messages.showAvailabilityTitle.id,
+      description: messages.showAvailabilityDescription.id,
+      type: 'enum',
+      enum: ['disabled', 'stock'],
+    },
+    showAvailabilityMessage: {
+      title: messages.showAvailabilityMessageTitle.id,
+      description: messages.showAvailabilityMessageDescription.id,
       type: 'string',
     },
   },
