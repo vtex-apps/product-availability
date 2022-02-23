@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useProduct } from 'vtex.product-context'
 import type { ProductTypes } from 'vtex.product-context'
 import { useCssHandles } from 'vtex.css-handles'
@@ -64,20 +64,32 @@ function ProductAvailabilityWrapper({
   const productContextValue = useProduct()
   const intl = useIntl()
 
-  const formattedLowStockMessage = formatIOMessage({
-    id: lowStockMessage,
-    intl,
-  }) as string
+  const formattedLowStockMessage = useMemo(
+    () =>
+      formatIOMessage({
+        id: lowStockMessage,
+        intl,
+      }),
+    [lowStockMessage, intl]
+  ) as string
 
-  const formattedHighStockMessage = formatIOMessage({
-    id: highStockMessage,
-    intl,
-  }) as string
+  const formattedHighStockMessage = useMemo(
+    () =>
+      formatIOMessage({
+        id: highStockMessage,
+        intl,
+      }),
+    [highStockMessage, intl]
+  ) as string
 
-  const formattedShowAvailabilityMessage = formatIOMessage({
-    id: showAvailabilityMessage,
-    intl,
-  }) as string
+  const formattedShowAvailabilityMessage = useMemo(
+    () =>
+      formatIOMessage({
+        id: showAvailabilityMessage,
+        intl,
+      }),
+    [showAvailabilityMessage, intl]
+  ) as string
 
   if (!productContextValue) {
     return null
