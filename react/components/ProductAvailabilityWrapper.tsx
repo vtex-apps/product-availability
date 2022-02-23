@@ -109,43 +109,47 @@ defineMessages({
     id: 'admin/editor.product-availability.title',
   },
   lowStockMessageTitle: {
-    defaultMessage: 'Product Availability',
+    defaultMessage: 'Low stock message',
     id: 'admin/editor.product-availability.lowStockMessage.title',
   },
   lowStockMessageDescription: {
-    defaultMessage: 'Product Availability',
+    defaultMessage:
+      'Text to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: "Only {quantity} left!". Leave empty to not show.',
     id: 'admin/editor.product-availability.lowStockMessage.description',
   },
   highStockMessageTitle: {
-    defaultMessage: 'Product Availability',
+    defaultMessage: 'High stock message',
     id: 'admin/editor.product-availability.highStockMessage.title',
   },
   highStockMessageDescription: {
-    defaultMessage: 'Product Availability',
+    defaultMessage:
+      "Text to be shown when stock is higher or equal than threshold. If left empty, won't show",
     id: 'admin/editor.product-availability.highStockMessage.description',
   },
   showAvailabilityMessageTitle: {
-    defaultMessage: 'Product Availability',
+    defaultMessage: 'Availability message',
     id: 'admin/editor.product-availability.showAvailabilityMessage.title',
   },
   showAvailabilityMessageDescription: {
-    defaultMessage: 'Product Availability',
+    defaultMessage:
+      'Text to be shown when "Enable availability message" option is set to "stock"',
     id: 'admin/editor.product-availability.showAvailabilityMessage.description',
   },
   thresholdTitle: {
-    defaultMessage: 'Product Availability',
+    defaultMessage: 'Threshold quantity',
     id: 'admin/editor.product-availability.threshold.title',
   },
   thresholdDescription: {
-    defaultMessage: 'Product Availability',
+    defaultMessage:
+      'Minimum quantity that makes low stock message appear (if message is set)',
     id: 'admin/editor.product-availability.threshold.description',
   },
   showAvailabilityTitle: {
-    defaultMessage: 'Product Availability',
+    defaultMessage: 'Enable availability message',
     id: 'admin/editor.product-availability.showAvailability.title',
   },
   showAvailabilityDescription: {
-    defaultMessage: 'Product Availability',
+    defaultMessage: 'Option to show availability',
     id: 'admin/editor.product-availability.showAvailability.description',
   },
 })
