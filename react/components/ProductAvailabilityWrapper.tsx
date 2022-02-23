@@ -67,17 +67,17 @@ function ProductAvailabilityWrapper({
   const formattedLowStockMessage = formatIOMessage({
     id: lowStockMessage,
     intl,
-  })
+  }) as string
 
   const formattedHighStockMessage = formatIOMessage({
     id: highStockMessage,
     intl,
-  })
+  }) as string
 
   const formattedShowAvailabilityMessage = formatIOMessage({
     id: showAvailabilityMessage,
     intl,
-  })
+  }) as string
 
   if (!productContextValue) {
     return null
