@@ -4951,10 +4951,6 @@ verror@1.10.0:
   version "0.7.5"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.native-types@0.7.5/public/@types/vtex.native-types#52d8c0b675fcdf2b6b1ca93f6a99a630519f618f"
 
-"vtex.product-availability@https://victormiranda--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.product-availability@0.2.0+build1645631307/public/@types/vtex.product-availability":
-  version "0.2.1-beta.1"
-  resolved "https://victormiranda--storecomponents.myvtex.com/_v/private/typings/linked/v1/vtex.product-availability@0.2.0+build1645631307/public/@types/vtex.product-availability#ce13d4896e5274e3813f2ee53b110a693eb1c1b5"
-
 "vtex.product-context@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context":
   version "0.10.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.product-context@0.10.0/public/@types/vtex.product-context#c5e2a97b404004681ee12f4fff7e6b62157786cc"
