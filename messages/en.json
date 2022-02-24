@@ -1,0 +1,13 @@
+{
+  "admin/editor.product-availability.title": "Product Availability",
+  "admin/editor.product-availability.threshold.title": "Threshold quantity",
+  "admin/editor.product-availability.threshold.description": "Minimum quantity that makes low stock message appear (if message is set)",
+  "admin/editor.product-availability.lowStockMessage.title": "Low stock message",
+  "admin/editor.product-availability.lowStockMessage.description": "Text to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: \"Only {quantity} left!\". Leave empty to not show.",
+  "admin/editor.product-availability.highStockMessage.title": "High stock message",
+  "admin/editor.product-availability.highStockMessage.description": "Text to be shown when stock is higher or equal than threshold. If left empty, won't show",
+  "admin/editor.product-availability.showAvailability.title": "Enable availability message",
+  "admin/editor.product-availability.showAvailability.description": "Option to show availability",
+  "admin/editor.product-availability.showAvailabilityMessage.title": "Availability message",
+  "admin/editor.product-availability.showAvailabilityMessage.description": "Text to be shown when \"Enable availability message\" option is set to \"stock\""
+}

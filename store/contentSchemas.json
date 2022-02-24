@@ -1,0 +1,38 @@
+{
+  "definitions": {
+    "ProductAvailability": {
+      "properties": {
+        "lowStockMessage": {
+          "title": "admin/editor.product-availability.lowStockMessage.title",
+          "description": "admin/editor.product-availability.lowStockMessage.description",
+          "default": "",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        },
+        "highStockMessage": {
+          "title": "admin/editor.product-availability.highStockMessage.title",
+          "description": "admin/editor.product-availability.highStockMessage.description",
+          "default": "",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        },
+        "showAvailabilityMessage": {
+          "title": "admin/editor.product-availability.showAvailabilityMessage.title",
+          "description": "admin/editor.product-availability.showAvailabilityMessage.description",
+          "default": "",
+          "$ref": "app:vtex.native-types#/definitions/text"
+        },
+        "threshold": {
+          "title": "admin/editor.product-availability.threshold.title",
+          "description": "admin/editor.product-availability.threshold.description",
+          "type": "number",
+          "default": 0
+        },
+        "showAvailability": {
+          "title": "admin/editor.product-availability.showAvailability.title",
+          "description": "admin/editor.product-availability.showAvailability.description",
+          "default": "disabled",
+          "enum": ["disabled", "stock"]
+        }
+      }
+    }
+  }
+}
