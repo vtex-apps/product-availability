@@ -1,33 +1,132 @@
-import React, { useContext } from 'react'
-import { isEmpty, path } from 'ramda'
-import { ProductContext } from 'vtex.product-context'
-import { defineMessages } from 'react-intl'
+import React, { useMemo } from 'react'
+import { useProduct } from 'vtex.product-context'
+import type { ProductTypes } from 'vtex.product-context'
+import { useCssHandles } from 'vtex.css-handles'
+import type { CssHandlesTypes } from 'vtex.css-handles'
+import { formatIOMessage } from 'vtex.native-types'
+import { useIntl, defineMessages } from 'react-intl'
 
 import ProductAvailability from './ProductAvailability'
+import { CssHandlesProvider } from './CssHandlesContext'
 
-const messages = defineMessages({
+const CONTAINER_CSS_HANDLES = ['container'] as const
+const LOW_STOCK_CSS_HANDLES = ['lowStockText', 'lowStockHighlight'] as const
+const HIGH_STOCK_CSS_HANDLES = ['highStockText'] as const
+const SHOW_AVAILABLE_CSS_HANDLES = [
+  'showAvailableText',
+  'showAvailableTextHighlight',
+] as const
+
+export const CSS_HANDLES = [
+  ...CONTAINER_CSS_HANDLES,
+  ...LOW_STOCK_CSS_HANDLES,
+  ...HIGH_STOCK_CSS_HANDLES,
+  ...SHOW_AVAILABLE_CSS_HANDLES,
+] as const
+
+export function getFirstAvailableSeller(sellers?: ProductTypes.Seller[]) {
+  if (!sellers || sellers.length === 0) {
+    return
+  }
+
+  const availableSeller = sellers.find(
+    seller => seller.commertialOffer.AvailableQuantity !== 0
+  )
+
+  return availableSeller
+}
+
+interface Props {
+  threshold: number
+  lowStockMessage?: string
+  highStockMessage?: string
+  showAvailability?: 'stock' | 'disabled'
+  showAvailabilityMessage?: string
+  classes?: CssHandlesTypes.CustomClasses<
+    typeof CONTAINER_CSS_HANDLES &
+      (
+        | typeof LOW_STOCK_CSS_HANDLES
+        | typeof HIGH_STOCK_CSS_HANDLES
+        | typeof SHOW_AVAILABLE_CSS_HANDLES
+      )
+  >
+}
+
+function ProductAvailabilityWrapper({
+  threshold = 0,
+  lowStockMessage,
+  highStockMessage,
+  showAvailability,
+  showAvailabilityMessage,
+  classes,
+}: Props) {
+  const { handles, withModifiers } = useCssHandles(CSS_HANDLES, { classes })
+  const productContextValue = useProduct()
+  const intl = useIntl()
+
+  const formattedLowStockMessage = useMemo(
+    () =>
+      formatIOMessage({
+        id: lowStockMessage,
+        intl,
+      }),
+    [lowStockMessage, intl]
+  ) as string
+
+  const formattedHighStockMessage = useMemo(
+    () =>
+      formatIOMessage({
+        id: highStockMessage,
+        intl,
+      }),
+    [highStockMessage, intl]
+  ) as string
+
+  const formattedShowAvailabilityMessage = useMemo(
+    () =>
+      formatIOMessage({
+        id: showAvailabilityMessage,
+        intl,
+      }),
+    [showAvailabilityMessage, intl]
+  ) as string
+
+  if (!productContextValue) {
+    return null
+  }
+
+  const seller = getFirstAvailableSeller(
+    productContextValue.selectedItem?.sellers
+  )
+
+  const availableQuantity = seller?.commertialOffer.AvailableQuantity
+
+  return (
+    <CssHandlesProvider handles={handles} withModifiers={withModifiers}>
+      <ProductAvailability
+        threshold={threshold}
+        lowStockMessage={formattedLowStockMessage}
+        highStockMessage={formattedHighStockMessage}
+        showAvailability={showAvailability}
+        showAvailabilityMessage={formattedShowAvailabilityMessage}
+        availableQuantity={availableQuantity}
+      />
+    </CssHandlesProvider>
+  )
+}
+
+defineMessages({
   title: {
     defaultMessage: 'Product Availability',
     id: 'admin/editor.product-availability.title',
-  },
-  description: {
-    defaultMessage: 'Component that shows the remaining available quantity',
-    id: 'admin/editor.product-availability.description',
-  },
-  thresholdTitle: {
-    defaultMessage: 'Threshold quantity',
-    id: 'admin/editor.product-availability.threshold.title',
-  },
-  thresholdDescription: {
-    defaultMessage: 'Minimum quantity that makes low stock message appear (if message is set)',
-    id: 'admin/editor.product-availability.threshold.description',
   },
   lowStockMessageTitle: {
     defaultMessage: 'Low stock message',
     id: 'admin/editor.product-availability.lowStockMessage.title',
   },
   lowStockMessageDescription: {
-    defaultMessage: 'String to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: \"Only {quantity} left!\". Leave empty to not show.',
+    defaultMessage:
+      'Text to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: "Only {quantity} left!". Leave empty to not show.',
     id: 'admin/editor.product-availability.lowStockMessage.description',
   },
   highStockMessageTitle: {
@@ -35,62 +134,40 @@ const messages = defineMessages({
     id: 'admin/editor.product-availability.highStockMessage.title',
   },
   highStockMessageDescription: {
-    defaultMessage: 'String to be shown when stock is higher or equal than threshold. If left empty, won\'t show',
+    defaultMessage:
+      "Text to be shown when stock is higher or equal than threshold. If left empty, won't show",
     id: 'admin/editor.product-availability.highStockMessage.description',
+  },
+  showAvailabilityMessageTitle: {
+    defaultMessage: 'Availability message',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.title',
+  },
+  showAvailabilityMessageDescription: {
+    defaultMessage:
+      'Text to be shown when "Enable availability message" option is set to "stock"',
+    id: 'admin/editor.product-availability.showAvailabilityMessage.description',
+  },
+  thresholdTitle: {
+    defaultMessage: 'Threshold quantity',
+    id: 'admin/editor.product-availability.threshold.title',
+  },
+  thresholdDescription: {
+    defaultMessage:
+      'Minimum quantity that makes low stock message appear (if message is set)',
+    id: 'admin/editor.product-availability.threshold.description',
+  },
+  showAvailabilityTitle: {
+    defaultMessage: 'Enable availability message',
+    id: 'admin/editor.product-availability.showAvailability.title',
+  },
+  showAvailabilityDescription: {
+    defaultMessage: 'Option to show availability',
+    id: 'admin/editor.product-availability.showAvailability.description',
   },
 })
 
-interface Props {
-  threshold: number
-  lowStockMessage: string
-  highStockMessage: string
-}
-
-interface SelectedItem {
-  sellers: Array<{
-    commertialOffer: {
-      AvailableQuantity: number
-    }
-  }>
-}
-
-const ProductAvailabilityWrapper: StorefrontFunctionComponent<Props> = ({ threshold, lowStockMessage, highStockMessage }) => {
-  const valuesFromContext = useContext(ProductContext)
-  if (!valuesFromContext || isEmpty(valuesFromContext)) {
-    return null
-  } 
-  const { selectedItem }: { selectedItem: SelectedItem } = valuesFromContext
-  const availableQuantity = path(['sellers', 0, 'commertialOffer', 'AvailableQuantity'], selectedItem) as number | undefined
-  return <ProductAvailability { ...{ threshold, lowStockMessage, highStockMessage, availableQuantity }} />
-}
-
-ProductAvailabilityWrapper.defaultProps = {
-  threshold: 0,
-}
-
 ProductAvailabilityWrapper.schema = {
-  title: messages.title.id,
-  description: messages.description.id,
-  type: 'object',
-  properties: {
-    threshold: {
-      title: messages.thresholdTitle.id,
-      description: messages.thresholdDescription.id,
-      type: 'number',
-      default: 0,
-      isLayout: true,
-    },
-    lowStockMessage: {
-      title: messages.lowStockMessageTitle.id,
-      description: messages.lowStockMessageDescription.id,
-      type: 'string',
-    },
-    highStockMessage: {
-      title: messages.highStockMessageTitle.id,
-      description: messages.highStockMessageDescription.id,
-      type: 'string',
-    }
-  },
+  title: 'admin/editor.product-availability.title',
 }
 
 export default ProductAvailabilityWrapper

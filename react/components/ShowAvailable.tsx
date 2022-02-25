@@ -7,24 +7,26 @@ interface Props {
   availableQuantity: number
 }
 
-function LowStock({ text, availableQuantity }: Props) {
+function ShowAvailable({ text, availableQuantity }: Props) {
   const { handles } = useContextCssHandles()
   const [before, after] = text.split('{quantity}')
 
   return (
     <Fragment>
       {before && (
-        <span className={`${handles.lowStockText} c-muted-2 t-body`}>
+        <span className={`${handles.showAvailableText} c-muted-2 t-body`}>
           {before}
         </span>
       )}
       {availableQuantity && (
-        <span className={`${handles.lowStockHighlight} c-muted-2 t-body b mh1`}>
+        <span
+          className={`${handles.showAvailableTextHighlight} c-muted-2 t-body b mh1`}
+        >
           {availableQuantity}
         </span>
       )}
       {after && (
-        <span className={`${handles.lowStockText} c-muted-2 t-body`}>
+        <span className={`${handles.showAvailableText} c-muted-2 t-body`}>
           {after}
         </span>
       )}
@@ -32,4 +34,4 @@ function LowStock({ text, availableQuantity }: Props) {
   )
 }
 
-export default LowStock
+export default ShowAvailable

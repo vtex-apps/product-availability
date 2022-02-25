@@ -1,21 +1,24 @@
 {
   "vendor": "vtex",
   "name": "product-availability",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "title": "Product Availability",
   "description": "Show different messages depending on your product available quantity",
-  "defaultLocale": "pt-BR",
+  "defaultLocale": "en-US",
   "builders": {
     "store": "0.x",
     "react": "3.x",
-    "docs": "0.x"
+    "docs": "0.x",
+    "messages": "1.x"
   },
   "mustUpdateAt": "2019-04-02",
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
   "dependencies": {
-    "vtex.product-context": "0.x"
+    "vtex.product-context": "0.x",
+    "vtex.css-handles": "1.x",
+    "vtex.native-types": "0.x"
   },
   "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
 }

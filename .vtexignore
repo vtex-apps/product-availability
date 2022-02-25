@@ -1,7 +1,17 @@
-node_modules
-react/**/__tests__/**
-react/**/__mocks__/**
-react/**/*.test.js
-react/**/*.test.ts
-react/**/*.test.tsx
-coverage/
+# general
+**/node_modules/
+/.git/
+/package.json
+/README.md
+/crowdin.yml
+
+# tools
+**/.eslintrc
+**/.prettierrc
+**/.gitignore
+
+# tests
+**/__tests__
+**/__mocks__
+**/*.test.*
+react/testUtils/**

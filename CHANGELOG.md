@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.0] - 2022-02-24
+### Added
+- `contentSchemas.json` file to support different prop values for different locales.
+
+## [0.2.0] - 2021-07-27
+
+### Added
+- ShowAvailability property to show stock instead of lowStock or highStock message
+
+## [0.1.0] - 2021-03-08
+### Added
+- CSS Handles custom classes
+
 ## [0.0.2] - 2019-08-29
 
 ## [0.0.1] - 2019-05-25

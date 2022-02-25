@@ -1,5 +1,8 @@
 {
   "product-availability": {
-    "component": "ProductAvailability"
+    "component": "ProductAvailability",
+    "content": {
+      "$ref": "app:vtex.product-availability#/definitions/ProductAvailability"
+    }
   }
 }

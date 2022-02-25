@@ -1,0 +1,30 @@
+{
+  "name": "product-availability",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "lint": "eslint --ext js,jsx,ts,tsx .",
+    "test": "cd ./react && yarn test",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json}\"",
+    "postinstall": "husky install"
+  },
+  "lint-staged": {
+    "*.{ts,js,tsx,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,graphql,gql}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@vtex/prettier-config": "^0.1.4",
+    "eslint": "^7.12.1",
+    "eslint-config-vtex": "^12.3.2",
+    "eslint-config-vtex-react": "^6.3.2",
+    "husky": "^5.0.9",
+    "lint-staged": "^10.1.1",
+    "prettier": "^2.0.2",
+    "typescript": "^3.8.3"
+  }
+}
