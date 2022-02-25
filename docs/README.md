@@ -1,130 +1,69 @@
+> 📢 Use this project, [contribute](https://github.com/vtex-apps/product-availability) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
+
 # Product Availability
 
-## Description
+<!-- DOCS-IGNORE:start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- DOCS-IGNORE:end -->
 
-The Product Availability component shows different messages set by the user, depending on the available quantity of the product.
+The Product Availability app displays text messages regarding the in-stock quantity for products. 
 
-It is only available to be used on the `store.product` block, in your product page.
+![product-availability](https://user-images.githubusercontent.com/52087100/99307082-c8f76900-2834-11eb-96f2-df5e9d2bc49a.png)
 
-:loudspeaker: **Disclaimer:** Don't fork this project; use, contribute, or open issue with your feature request
+## Configuration
 
-## Table of Contents
+1. Add the Product Availability app to your theme's dependencies in the `manifest.json` file:
 
-- [Usage](#usage)
-  - [Blocks API](#blocks-api)
-    - [Configuration](#configuration)
-  - [Styles API](#styles-api)
-    - [CSS Namespaces](#css-namespaces)
-- [Troubleshooting](#troubleshooting)
-- [Tests](#tests)
-
-## Usage
-
-This app uses our store builder with the blocks architecture. To know more about Store Builder [click here.](https://help.vtex.com/en/tutorial/understanding-storebuilder-and-stylesbuilder#structuring-and-configuring-our-store-with-object-object)
-
-To use this app or override the default CSS you need import it in your dependencies on `manifest.json` file.
-
-```json
-  "dependencies": {
-"vtex.product-availability": "0.x"
-}
+```diff
+ "dependencies": {
++  "vtex.product-availability": "0.x"
+ }
 ```
 
-Then, add `product-availability` block to your `blocks.json`
-
-Now, you can change the behavior of the `product-availability` block that is in the minicart. See an example of how to configure **without** showing availability:
+2. Add the `product-availability` block to the desired theme block whose data is fetched from the [Product Context](https://developers.vtex.com/vtex-developer-docs/docs/vtex-product-context), such as the [Minicart](https://developers.vtex.com/vtex-developer-docs/docs/vtex-minicart). For example:
 
 ```json
-  "product-availability": {
-    "props": {
-      "threshold":"10",
-      "lowStockMessage":"Only {quantity} left!",
-      "highStockMessage":"Item in stock!"
-    }
-  }
-```
-
-See an example of how to configure **showing availability**:
-
-```json
-  "product-availability": {
-    "props": {
-      "showAvailability": "stock",
-      "showAvailabilityMessage": "There are {quantity} available!"
-    }
-  }
-```
-
-### Blocks API
-
-When implementing this app as a block, various inner blocks may be available. The following interface lists the available blocks within product-availability and describes if they are required or optional.
-
-```json
-{
-  "product-availability": {
-    "component": "ProductAvailability"
+"product-availability": {
+  "props": {
+    "threshold": "10",
+    "lowStockMessage": "Only {quantity} left!",
+    "highStockMessage": "Item in stock!"
   }
 }
 ```
 
-For now this block does not have any required or optional blocks.
+| Prop name           | Type      | Description                                                 | Default value | 
+| ------------------- | --------- | ----------------------------------------------------------- | ------------- |
+| `threshold`     | `number` | Minimum product quantity that makes the low stock message to be displayed (if any message is set in the `lowStockMessage` prop).   | `0` | 
+| `lowStockMessage` | `string` | Message text to be displayed when the in-stock quantity is lower than the quantity defined in the `threshold` prop. This prop value must have `{quantity}` inside the string text in order to properly display the stock quantity according to the threshold. For example: `"Only {quantity} left!`. Notice: if this prop's value is left empty, no message will be shown. | `""` | 
+| `highStockMessage`  | `string` | Message text to be displayed when the in-stock quantity is higher or equal than the quantity defined in the `threshold` prop. Notice: if this prop's value is left empty, no message will be shown. | `""` | 
 
-#### Configuration
+## Customization
 
-Through the Storefront, you can change the product-availability's behavior and interface. However, you also can make in your theme app, as Store theme does.
+In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://developers.vtex.com/vtex-developer-docs/docs/vtex-io-documentation-using-css-handles-for-store-customization).
 
-| Prop name           | Type      | Description                                                                                 |
-| ------------------- | --------- | ------------------------------------------------------------------------------------------- |
-| `threshold`     | `Number` | DefineMinimum quantity that makes low stock message appear (if message is set). Default: 0    |
-| `lowStockMessage`        | `String` | String to be shown to user when stock is lower than threshold. Should have {quantity} inside the given string, to be replaced for the threshold property. Example: \"Only {quantity} left!\". Leave empty to not show. Default: ""              |
-| `highStockMessage`  | `String` | String to be shown when stock is higher or equal than threshold. If left empty, won\'t show. Default: ""                                                              |
-| `showAvailability`  | `'disabled' \ 'stock'` | Enables the possibility to show the available items instead of lowStockMessage or highStockMessage. Default `'disabled'`. To enable it, string should be `'stock'`                                                     |
-| `showAvailabilityMessage`  | `String` | String to be shown when show available option is true. Should have {quantity} inside the given string, to be replaced for the available property. Example: \"There are {quantity} available!\". Leave empty to not show. Default: ""                                                              |
+| CSS Handles |
+| ----------- | 
+| `container` | 
+| `highStockText` | 
+| `lowStockHighlight` | 
+| `lowStockText` | 
 
-### Styles API
+<!-- DOCS-IGNORE:start -->
 
-This app provides some CSS classes as an API for style customization.
+## Contributors ✨
 
-To use this CSS API, you must add the `styles` builder and create an app styling CSS file.
+Thanks goes to these wonderful people:
 
-1. Add the `styles` builder to your `manifest.json`:
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
-```json
-  "builders": {
-    "styles": "1.x"
-  }
-```
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
 
-2. Create a file called `vtex.product-availability.css` inside the `styles/css` folder. Add your custom styles:
-
-```css
-.container {
-  margin-top: 10px;
-}
-```
-
-#### CSS Namespaces
-
-Below, we describe the namespaces that are defined in the product-availability.
-
-| Token name                 | Component                                                                                                                                                                                                                                                                                                                                                                     | Description                                                   |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `container`                | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/ProductAvailability.tsx) | The main container of `ProductAvailability`                      |
-| `lowStockText`          | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)    |  Normal text for the low stock message.
-| `lowStockHighlight`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/LowStock.tsx)   |  Number of the low stock message that is supposed to be highlighted.  |
-| `highStockText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/HighStock.tsx)   | Text of the hight stock message.    |
-| `showAvailableText`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/ShowAvailable.tsx)   | Text of the show available message.    |
-| `showAvailableTextHighlight`           | [index](https://github.com/vtex-apps/product-availability/blob/master/react/components/ShowAvailable.tsx)   | Number of the available items that is supposed to be highlighted.
-
-## Troubleshooting
-
-You can check if others are passing through similar issues [here](https://github.com/vtex-apps/product-availability/issues). Also feel free to [open issues](https://github.com/vtex-apps/product-availability/issues/new) or contribute with pull requests.
-
-## Tests
-
-To execute our tests go to `react/` folder and run `yarn test`
-
-### Travis CI
-
-[![Build Status](https://travis-ci.org/vtex-apps/product-availability.svg?branch=master)](https://travis-ci.org/vtex-apps/product-availability)
-[![Coverage Status](https://coveralls.io/repos/github/vtex-apps/product-availability/badge.svg?branch=master)](https://coveralls.io/github/vtex-apps/product-availability?branch=master)
+<!-- DOCS-IGNORE:end -->
