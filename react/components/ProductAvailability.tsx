@@ -23,7 +23,7 @@ function ProductAvailability({
   showAvailabilityMessage,
   availableQuantity,
 }: Props) {
-  if (!availableQuantity || availableQuantity < 1) {
+  if (!availableQuantity || availableQuantity < 0) {
     return null
   }
 
