@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.3.2] - 2022-11-09
+### Added
+- Render the component even when the stock is 0.
+
 ## [0.3.1] - 2022-02-25
 
 ## [0.3.0] - 2022-02-24
