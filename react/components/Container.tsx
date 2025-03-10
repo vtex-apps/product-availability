@@ -12,7 +12,7 @@ function Container({ children }: PropsWithChildren) {
     <div
       className={`${handles.container} flex pv2`}
       aria-label={intl.formatMessage({
-        id: 'store/product-availability.aria-label',
+        id: 'store/product-availability.container.aria-label',
       })}
     >
       {children}
