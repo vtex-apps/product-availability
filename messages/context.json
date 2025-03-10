@@ -10,5 +10,6 @@
   "admin/editor.product-availability.showAvailability.title": "Enable availability message",
   "admin/editor.product-availability.showAvailability.description": "Option to show availability",
   "admin/editor.product-availability.showAvailabilityMessage.title": "Availability message",
-  "admin/editor.product-availability.showAvailabilityMessage.description": "Text to be shown when \"Enable availability message\" option is set to \"stock\""
+  "admin/editor.product-availability.showAvailabilityMessage.description": "Text to be shown when \"Enable availability message\" option is set to \"stock\"",
+  "store/product-availability.container.aria-label": "Product availability"
 }
