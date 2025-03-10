@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl'
 
 import { useContextCssHandles } from './CssHandlesContext'
 
-function Container({ children }: PropsWithChildren) {
+function Container({ children }: PropsWithChildren<unknown>) {
   const { handles } = useContextCssHandles()
   const intl = useIntl()
 
